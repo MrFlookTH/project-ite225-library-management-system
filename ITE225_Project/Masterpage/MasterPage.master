@@ -1,0 +1,115 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="Masterpage_MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Library Management System - ระบบบริหารจัดการข้อมูลห้องสมุด</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="header"></div>
+        <div id="banner"></div>
+        <div id="menu-bar">
+            <ul>
+                <li><a href="Default.aspx">หน้าแรก</a></li>
+                <li><a href="Search.aspx">ค้นหาหนังสือ</a></li>
+                <li><a href="Stat.aspx">สถิติการใช้ห้องสมุด</a></li>
+                <li><a href="Register.aspx">สมัครสมาชิก</a></li>
+                <li><a href="Admin.aspx">ผู้ดูแลระบบ</a></li>
+            </ul>
+        </div>
+        <div id="wrapper">
+            <div id="menu-left">
+                <h3>ระบบสมาชิก</h3>
+                <asp:Panel ID="PanelUserLogin" runat="server">
+                    <table class="formUserLogin" style="padding-bottom:10px;">
+                        <tr>
+                            <td>Username : <asp:TextBox ID="TextBoxUser" runat="server" MaxLength="15" AutoCompleteType="Disabled"></asp:TextBox></td>
+                        </tr>
+                        <tr>
+                            <td>Password : <asp:TextBox ID="TextBoxPass" runat="server" TextMode="Password" MaxLength="13"></asp:TextBox></td>
+                        </tr>
+                        <tr>
+                            <td><asp:CheckBox ID="CheckBoxRemember" runat="server" Text=" Remember me" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Button ID="btnLogin" runat="server" Text="เข้าสู่ระบบ" OnClick="btnLogin_Click" />
+                                <asp:Button ID="Button2" runat="server" Text="ลืมรหัสผ่าน" data-toggle="modal" data-target="#myModal" />
+                            </td>
+                        </tr>
+                    </table>
+                </asp:Panel>
+                <asp:Panel ID="PanelUserAccount" runat="server" Visible="false">
+                     <table class="formUserLogin">
+                        <tr>
+                            <td><img src="../image/user-icon.png" width="11" height="11" /> ID : <asp:Label ID="LabelUsername" runat="server" style="font-size:18px; font-weight:bold;"></asp:Label></td>
+                        </tr>
+                    </table>
+                    <ul>
+                        <li><a href="Account.aspx">ประวัติการใช้ห้องสมุด</a></li>
+                        <li><a href="ChangePwd.aspx">เปลี่ยนรหัสผ่าน</a></li>
+                        <li><a href="UserProfile.aspx">แก้ไขข้อมูลส่วนตัว</a></li>                        
+                        <li><a href="#" runat="server" onserverclick="btnLogout_Click">ออกจากระบบ</a></li>
+                    </ul>
+                </asp:Panel>
+                    
+                
+                <h3>หมวดหมู่หนังสือ</h3>
+                <ul>
+                    <li><a href="Category.aspx?id=1">ความรู้ทั่วไป, คอมพิวเตอร์</a></li>
+                    <li><a href="Category.aspx?id=2">ปรัชญา</a></li>
+                    <li><a href="Category.aspx?id=3">ศาสนา</a></li>
+                    <li><a href="Category.aspx?id=4">สังคมศาสตร์</a></li>
+                    <li><a href="Category.aspx?id=5">ภาษาศาสตร์</a></li>
+                    <li><a href="Category.aspx?id=6">วิทยาศาสตร์, คณิตศาสตร์</a></li>
+                    <li><a href="Category.aspx?id=7">การจัดการ, การบัญชี</a></li>
+                    <li><a href="Category.aspx?id=8">ศิลปะ, ดนตรี</a></li>
+                    <li><a href="Category.aspx?id=9">วรรณคดี</a></li>
+                    <li><a href="Category.aspx?id=10">ประวัติศาสตร์</a></li>
+                </ul>
+            </div>
+            <div id="content">
+                <asp:ContentPlaceHolder id="Content1" runat="server">
+                    
+                </asp:ContentPlaceHolder>
+            </div>
+            <div id="menu-right">
+                <h3>เมนูหลัก</h3>
+                <ul>
+                    <li><a href="Default.aspx">หน้าแรก</a></li>
+                    <li><a href="Search.aspx">ค้นหาหนังสือ</a></li>
+                    <li><a href="Stat.aspx">สถิติการใช้ห้องสมุด</a></li>
+                    <li><a href="Register.aspx">สมัครสมาชิก</a></li>
+                    <li><a href="Admin.aspx">ผู้ดูแลระบบ</a></li>
+                </ul>
+                <h3>สถิติการใช้ห้องสมุด</h3>
+                <ul>
+                    <li><a href="#">สมาชิกที่ยืมหนังสือมากที่สุด</a></li>
+                    <li><a href="#">หนังสือที่ถูกยืมมากที่สุด</a></li>
+                    <li><a href="#">หมวดหมู่หนังสือที่ถูกยืมมากที่สุด</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="footer">
+            <p>Copyright © 2015 All Rights Reserved. Library Management System</p>
+        </div>  
+    </form> 
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>    
+</body>
+</html>
